@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txt_login">Login</string>
+    <string name="txt_username">Username</string>
+    <string name="txt_password">Password</string>
+    <string name="txt_atau">atau</string>
+    <string name="txt_google">Google</string>
+    <string name="txt_home">Home</string>
+    <string name="txt_feed">Feed</string>
+    <string name="txt_cart">Cart</string>
+    <string name="txt_profile">Profile</string>
+</resources>
