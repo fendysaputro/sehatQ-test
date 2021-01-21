@@ -3,10 +3,15 @@ package id.phephen.sehatq_test.ui.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ProgressBar
+import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import id.phephen.sehatq_test.R
 import id.phephen.sehatq_test.databinding.ActivityLoginBinding
 import id.phephen.sehatq_test.databinding.ActivityMainBinding
+import id.phephen.sehatq_test.ui.cart.CartFragment
+import id.phephen.sehatq_test.ui.feed.FeedFragment
+import id.phephen.sehatq_test.ui.home.HomeFragment
+import id.phephen.sehatq_test.ui.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
         initView()
+        initialize()
         setBottomNavigation()
     }
 
@@ -28,23 +34,45 @@ class MainActivity : AppCompatActivity() {
         progressBar = binding.progressBar
     }
 
+    private fun initialize() {
+        val fragment = HomeFragment.newInstance()
+        addFragment(fragment)
+    }
+
     private fun setBottomNavigation() {
         bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_home -> {
-                    true
+                    val fragment = HomeFragment.newInstance()
+                    addFragment(fragment)
+                    return@setOnNavigationItemSelectedListener true
                 }
                 R.id.menu_feed -> {
-                    true
+                    val fragment = FeedFragment.newInstance()
+                    addFragment(fragment)
+                    return@setOnNavigationItemSelectedListener true
                 }
                 R.id.menu_cart -> {
-                    true
+                    val fragment = CartFragment.newInstance()
+                    addFragment(fragment)
+                    return@setOnNavigationItemSelectedListener true
                 }
                 R.id.menu_profile -> {
-                    true
+                    val fragment = ProfileFragment.newInstance()
+                    addFragment(fragment)
+                    return@setOnNavigationItemSelectedListener true
                 }
                 else -> false
             }
         }
     }
+
+    private fun addFragment(fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
+            .replace(R.id.content, fragment, fragment.javaClass.getSimpleName())
+            .commit()
+    }
+
 }
