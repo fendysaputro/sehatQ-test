@@ -6,12 +6,11 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import id.phephen.sehatq_test.R
-import id.phephen.sehatq_test.databinding.ActivityLoginBinding
 import id.phephen.sehatq_test.databinding.ActivityMainBinding
-import id.phephen.sehatq_test.ui.cart.CartFragment
-import id.phephen.sehatq_test.ui.feed.FeedFragment
-import id.phephen.sehatq_test.ui.home.HomeFragment
-import id.phephen.sehatq_test.ui.profile.ProfileFragment
+import id.phephen.sehatq_test.ui.fragment.cart.CartFragment
+import id.phephen.sehatq_test.ui.fragment.feed.FeedFragment
+import id.phephen.sehatq_test.ui.fragment.home.HomeFragment
+import id.phephen.sehatq_test.ui.fragment.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 

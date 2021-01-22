@@ -1,4 +1,4 @@
-package id.phephen.sehatq_test.ui.feed
+package id.phephen.sehatq_test.ui.fragment.feed
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import id.phephen.sehatq_test.R
-import id.phephen.sehatq_test.ui.home.HomeFragment
 
 
 class FeedFragment : Fragment() {
