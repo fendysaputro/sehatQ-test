@@ -6,4 +6,70 @@
     android:layout_height="match_parent"
     tools:context=".ui.search.SearchActivity">
 
+    <LinearLayout
+        android:id="@+id/lyt_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/bg_edit_text_search"
+        android:orientation="horizontal"
+        android:paddingVertical="10dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            app:srcCompat="@drawable/ic_search"
+            app:tint="@color/ic_search" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_search"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_Search"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:hint="@string/txt_search"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:textSize="14sp"
+                    android:textColor="@color/ic_search"
+                    android:textColorHint="@android:color/black" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
