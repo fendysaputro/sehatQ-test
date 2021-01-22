@@ -9,4 +9,5 @@
     <string name="txt_feed">Feed</string>
     <string name="txt_cart">Cart</string>
     <string name="txt_profile">Profile</string>
+    <string name="txt_search">Search</string>
 </resources>

@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="base_ripple_color">#70242424</color>
     <color name="red">#ff0101</color>
+    <color name="ic_search">#383842</color>
+    <color name="txt_search">#6d7278</color>
 </resources>
