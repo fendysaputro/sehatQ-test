@@ -90,8 +90,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun onBtnRegisterClick () {
         btnRegister.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            gotoMain()
         }
     }
 
