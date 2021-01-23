@@ -7,5 +7,6 @@ package id.phephen.sehatq_test.helpers
 class Constants {
     companion object {
         const val BASE_URL = "https://private-4639ce-ecommerce56.apiary-mock.com"
+        const val RC_SIGN_IN = 123
     }
 }

@@ -1,16 +1,24 @@
 package id.phephen.sehatq_test.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import id.phephen.sehatq_test.R
 import id.phephen.sehatq_test.databinding.ActivityMainBinding
+import id.phephen.sehatq_test.helpers.Constants.Companion.RC_SIGN_IN
 import id.phephen.sehatq_test.ui.fragment.cart.CartFragment
 import id.phephen.sehatq_test.ui.fragment.feed.FeedFragment
 import id.phephen.sehatq_test.ui.fragment.home.HomeFragment
 import id.phephen.sehatq_test.ui.fragment.profile.ProfileFragment
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         initView()
         initialize()
         setBottomNavigation()
+
     }
 
     private fun initView() {
@@ -69,9 +78,11 @@ class MainActivity : AppCompatActivity() {
     private fun addFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
-            .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
+            .setCustomAnimations(
+                R.anim.design_bottom_sheet_slide_in,
+                R.anim.design_bottom_sheet_slide_out
+            )
             .replace(R.id.content, fragment, fragment.javaClass.getSimpleName())
             .commit()
     }
-
 }

@@ -76,4 +76,11 @@ dependencies {
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
+    // Sign in google
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
+    // Sign in facebook
+    implementation 'com.facebook.android:facebook-login:5.1.1'
+
 }
