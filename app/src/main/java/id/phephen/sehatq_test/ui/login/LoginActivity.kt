@@ -69,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
         btnGoogle.setSize(SignInButton.SIZE_STANDARD)
 
         btnGoogle.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
             val signInIntent: Intent = mGoogleSignInClient.getSignInIntent()
             startActivityForResult(signInIntent, RC_SIGN_IN)
         }
@@ -97,16 +98,31 @@ class LoginActivity : AppCompatActivity() {
     private fun gotoMain() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     private fun onBtnFacebookClick () {
         btnFacebook.setOnClickListener {
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
+            progressBar.visibility = View.VISIBLE
             btnFacebook.setReadPermissions(listOf(EMAIL))
             callbackManager = CallbackManager.Factory.create()
             LoginManager.getInstance().registerCallback(callbackManager, object :FacebookCallback<LoginResult>{
                 override fun onSuccess(result: LoginResult?) {
+                    progressBar.visibility = View.GONE
+                    val graphRequest = GraphRequest.newMeRequest(result?.accessToken){obj, response ->
+                        try {
+                            if (obj.has("id")) {
+
+                            }
+                        } catch (e: Exception){
+
+                        }
+                    }
+
+                    val param = Bundle()
+                    param.putString("fields", "name,email,id,picture.type[large]")
+                    graphRequest.parameters = param
+                    graphRequest.executeAsync()
                     gotoMain()
                 }
 
@@ -126,8 +142,8 @@ class LoginActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == RC_SIGN_IN) {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            progressBar.visibility = View.GONE
+            gotoMain()
         }
 
          callbackManager.onActivityResult(requestCode, resultCode, data)
