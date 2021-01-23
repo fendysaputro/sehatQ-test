@@ -1,23 +1,26 @@
 package id.phephen.sehatq_test.ui.main
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import id.phephen.sehatq_test.R
 import id.phephen.sehatq_test.databinding.ActivityMainBinding
-import id.phephen.sehatq_test.helpers.Constants.Companion.RC_SIGN_IN
+import id.phephen.sehatq_test.local.db.PurchaseDatabase
+import id.phephen.sehatq_test.local.db.SearchDatabase
+import id.phephen.sehatq_test.repository.HomeRepository
+import id.phephen.sehatq_test.repository.SearchRepository
 import id.phephen.sehatq_test.ui.fragment.cart.CartFragment
 import id.phephen.sehatq_test.ui.fragment.feed.FeedFragment
 import id.phephen.sehatq_test.ui.fragment.home.HomeFragment
 import id.phephen.sehatq_test.ui.fragment.profile.ProfileFragment
+import id.phephen.sehatq_test.ui.fragment.viewmodel.HomeViewModel
+import id.phephen.sehatq_test.ui.fragment.viewmodel.HomeViewModelProviderFactory
+import id.phephen.sehatq_test.ui.fragment.viewmodel.SearchViewModel
+import id.phephen.sehatq_test.ui.fragment.viewmodel.SearchViewModelProviderFactory
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +28,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var bottomNav: BottomNavigationView
     private lateinit var progressBar: ProgressBar
+
+    lateinit var viewModel: HomeViewModel
+    lateinit var searchViewModel: SearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +51,15 @@ class MainActivity : AppCompatActivity() {
     private fun initialize() {
         val fragment = HomeFragment.newInstance()
         addFragment(fragment)
+        val purchaseDatabase = PurchaseDatabase(this)
+        val repository = HomeRepository(purchaseDatabase)
+        val factory = HomeViewModelProviderFactory(repository)
+        viewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
+
+        val searchDatabase = SearchDatabase(this)
+        val searchRepository = SearchRepository(searchDatabase)
+        val searchFactory = SearchViewModelProviderFactory(searchRepository)
+        searchViewModel = ViewModelProvider(this, searchFactory).get(SearchViewModel::class.java)
     }
 
     private fun setBottomNavigation() {
